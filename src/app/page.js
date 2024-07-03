@@ -4,6 +4,8 @@ import Loader from "@/components/Loader";
 import UserList from "@/components/UserList";
 import { useEffect, useState } from "react";
 import { FaUserTie } from "react-icons/fa";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 
 export default function Home() {
@@ -22,7 +24,16 @@ export default function Home() {
         const data = await response.json();
         setUsers(data);
       } catch (error) {
-        console.log(error);
+        toast.error('Failed to fetch users', {
+          position: "top-center",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          });
       }
       setLoading(false);
     }
@@ -45,6 +56,18 @@ export default function Home() {
         :
         <UserList users={users} searchText={searchText} />
       }
+      <ToastContainer
+          position="top-center"
+          autoClose={2000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+        />
     </div>
   );
 }

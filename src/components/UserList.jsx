@@ -14,7 +14,7 @@ function UserList({users, searchText}) {
               return fullName.toLowerCase().includes(searchText.toLowerCase());
             })
             .map((user, index) => (
-              <Accordion.Item key={index} eventKey={user.id}>
+              <Accordion.Item key={index} eventKey={`${index}`}>
                 <Accordion.Header>
                   <div className="flex gap-2 items-center">
                     <img src={user.avatar} alt="" className="w-10 h-10 rounded-full" />
